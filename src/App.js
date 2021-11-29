@@ -5,7 +5,7 @@ import Title from './UI/Title';
 import TodoList from './Components/TodoList';
 import AddToDo from './Components/AddToDo';
 import Notification from './UI/Notification';
-import { Switch } from '@mui/material';
+import ThemeSwitch from './Components/ThemeSwitch';
 
 function App() {
 	// Todo data
@@ -17,42 +17,17 @@ function App() {
 		},
 		{
 			id: 2,
-			title: 'Get a job',
+			title: 'Tidy up the apartment',
 			completed: false,
 		},
 		{
 			id: 3,
-			title: 'Study chess',
-			descripion: 'Pay the bill for the month',
-			completed: false,
-		},
-		{
-			id: 4,
-			title: 'Do absolutely nothing',
-			descripion: 'Pay the bill for the month',
+			title: 'Create a to-do app',
 			completed: true,
 		},
 	]);
 
 	const [notificationMessage, setNotificationMessage] = useState([]);
-
-	// Theme functionanlity
-	const [theme, setTheme] = useState('light-theme');
-	const [checked, setChecked] = useState(false);
-
-	useEffect(() => {
-		document.documentElement.className = theme;
-	}, [theme]);
-
-	const themeToggle = () => {
-		if (theme === 'light-theme') {
-			setTheme('dark-theme');
-			setChecked(true);
-		} else {
-			setTheme('light-theme');
-			setChecked(false);
-		}
-	};
 
 	// Handlers
 	const notificationHandler = () => {
@@ -100,7 +75,7 @@ function App() {
 
 	return (
 		<AppStyled>
-			<Switch color="primary" checked={checked} onChange={themeToggle} />
+			<ThemeSwitch />
 			<Container>
 				<Title title={'To-do List'} />
 				<AddToDo todos={todos} addTodo={addTodoHandler} />

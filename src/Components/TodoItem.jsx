@@ -41,7 +41,11 @@ const TodoItem = (props) => {
 			{!isEditing ? (
 				<div className={todoClasses}>
 					<BoltIcon />
-					<p>{todoTitle}</p>
+					{props.todo.completed ? (
+						<strike>{todoTitle}</strike>
+					) : (
+						<p>{todoTitle}</p>
+					)}
 				</div>
 			) : (
 				<form className="todo_edit" onSubmit={saveEdit}>
