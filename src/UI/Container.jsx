@@ -17,6 +17,10 @@ const ContainerStyled = styled.div`
 	font-size: 1.6rem;
 	-webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
 	box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+
+	@media (max-width: 768px) {
+		width: 99%;
+	}
 `;
 
 export default Container;
