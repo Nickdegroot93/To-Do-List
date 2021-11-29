@@ -10,7 +10,6 @@ const ContainerStyled = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	margin-top: 10rem;
 	width: 35rem;
 	background-color: var(--color-secondary-dark);
 	border-radius: 0.5rem;

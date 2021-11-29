@@ -107,6 +107,7 @@ const TodoItemStyled = styled.div`
 	}
 
 	.icon {
+		z-index: 2;
 		background-color: var(--color-secondary-light);
 		border: none;
 		color: var(--color-off-white);
@@ -139,6 +140,7 @@ const TodoItemStyled = styled.div`
 	}
 
 	.todo_text {
+		cursor: pointer;
 		display: flex;
 		align-items: center;
 		transition: all 0.3s ease-in-out;
