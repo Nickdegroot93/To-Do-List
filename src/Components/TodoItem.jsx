@@ -63,11 +63,7 @@ const TodoItem = (props) => {
 			{!isEditing ? (
 				<div className="todo_actions">
 					<button className="icon" onClick={toggleComplete}>
-						{!props.todo.completed ? (
-							<CheckRoundedIcon />
-						) : (
-							<RemoveRoundedIcon />
-						)}
+						{!props.todo.completed ? <div></div> : <CheckRoundedIcon />}
 					</button>
 					<button className="icon" onClick={toggleIsEditing}>
 						<EditRoundedIcon />
@@ -90,8 +86,6 @@ const TodoItemStyled = styled.div`
 	align-items: center;
 	width: 100%;
 	padding: 0.5rem;
-	border-bottom: 1px solid var(--color-secondary-light);
-	margin-bottom: 0.5rem;
 
 	.todo_edit {
 		display: flex;
@@ -144,7 +138,6 @@ const TodoItemStyled = styled.div`
 	}
 
 	.todo_text {
-		cursor: pointer;
 		display: flex;
 		align-items: center;
 		transition: all 0.3s ease-in-out;

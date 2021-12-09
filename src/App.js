@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Container from './UI/Container';
 import Title from './UI/Title';
@@ -62,6 +62,10 @@ function App() {
 		);
 	};
 
+	const setTodoOrderHandler = (todos) => {
+		setTodos(todos);
+	};
+
 	const UpdateTodoHandler = (id, title) => {
 		setTodos(
 			todos.map((todo) => {
@@ -84,6 +88,7 @@ function App() {
 					removeTodo={removeTodoHandler}
 					toggleComplete={toggleCompleteHandler}
 					updateTodo={UpdateTodoHandler}
+					setTodoOrder={setTodoOrderHandler}
 				/>
 			</Container>
 			{notificationMessage.length > 0 &&
@@ -100,6 +105,10 @@ const AppStyled = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+
+	@media (max-width: 768px) {
+		margin-top: 1rem;
+	}
 `;
 
 export default App;

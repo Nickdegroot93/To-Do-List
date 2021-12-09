@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import TodoItem from './TodoItem';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const TodoList = (props) => {
 	const [todos, setTodos] = useState([]);
@@ -34,6 +35,17 @@ const TodoList = (props) => {
 		props.updateTodo(id, title);
 	};
 
+	const onDragEndHandler = (result) => {
+		if (!result.destination) return;
+
+		const items = Array.from(todos);
+		const [currentItem] = items.splice(result.source.index, 1);
+		items.splice(result.destination.index, 0, currentItem);
+
+		setTodos(items);
+		props.setTodoOrder(items);
+	};
+
 	return (
 		<TodoListStyled>
 			{props.todos.length > 0 && (
@@ -52,15 +64,45 @@ const TodoList = (props) => {
 			{todos.length === 0 && (
 				<div className="not-found">There's nothing here...</div>
 			)}
-			{todos.map((todo) => (
-				<TodoItem
-					key={todo.id}
-					todo={todo}
-					removeTodo={removeTodoHandler}
-					toggleComplete={toggleCompleteHandler}
-					updateTodo={updateTodoHandler}
-				/>
-			))}
+
+			<DragDropContext onDragEnd={onDragEndHandler}>
+				<Droppable droppableId="todos">
+					{(provided) => (
+						<ul
+							className="todos"
+							{...provided.droppableProps}
+							ref={provided.innerRef}
+						>
+							{todos.map((todo, index) => {
+								return (
+									<Draggable
+										key={todo.id}
+										draggableId={`${todo.id}`}
+										index={index}
+									>
+										{(provided) => (
+											<li
+												className="todo"
+												{...provided.draggableProps}
+												{...provided.dragHandleProps}
+												ref={provided.innerRef}
+											>
+												<TodoItem
+													todo={todo}
+													removeTodo={removeTodoHandler}
+													toggleComplete={toggleCompleteHandler}
+													updateTodo={updateTodoHandler}
+												/>
+											</li>
+										)}
+									</Draggable>
+								);
+							})}
+							{provided.placeholder}
+						</ul>
+					)}
+				</Droppable>
+			</DragDropContext>
 		</TodoListStyled>
 	);
 };
@@ -72,6 +114,18 @@ const TodoListStyled = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+	li {
+		list-style: none;
+	}
+
+	.todos {
+		width: 100%;
+	}
+
+	.todo:not(:last-child) {
+		border-bottom: 1px solid var(--color-secondary-light);
+	}
 
 	.not-found {
 		padding: 1rem;
