@@ -16,8 +16,7 @@ const GlobalStyle = createGlobalStyle`
     --color-white: #FFF;
     --color-off-white: #F5F5F5;
     --color-black: #000;
-    --color-warning: #F05454;
-    --color-success: #519872;
+    --color-copyright:#222831;
 }
 
 .dark-theme {
@@ -34,8 +33,7 @@ const GlobalStyle = createGlobalStyle`
     --color-white: #FFF;
     --color-off-white: #F5F5F5;
     --color-black: #000;
-    --color-warning: #F05454;
-    --color-success: #519872;
+    --color-copyright: #F5F5F5;
 }
 
 *{

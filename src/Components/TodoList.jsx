@@ -61,9 +61,7 @@ const TodoList = (props) => {
 					</select>
 				</div>
 			)}
-			{todos.length === 0 && (
-				<div className="not-found">There's nothing here...</div>
-			)}
+			{todos.length === 0 && <div className="not-found">No todo's found</div>}
 
 			<DragDropContext onDragEnd={onDragEndHandler}>
 				<Droppable droppableId="todos">
@@ -107,7 +105,7 @@ const TodoList = (props) => {
 	);
 };
 
-// CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS
+// STYLING
 const TodoListStyled = styled.div`
 	width: 100%;
 	display: flex;
@@ -129,7 +127,7 @@ const TodoListStyled = styled.div`
 
 	.not-found {
 		padding: 1rem;
-		font-style: italic;
+
 		color: var(--color-off-white);
 	}
 

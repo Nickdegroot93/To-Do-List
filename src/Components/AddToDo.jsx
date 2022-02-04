@@ -7,10 +7,11 @@ const AddToDo = (props) => {
 	const formRef = useRef();
 
 	const generateID = () => {
+		// Generates a random ID. Not too fancy but does the job.
 		if (props.todos.length === 0) {
 			return 0;
 		} else {
-			return props.todos[props.todos.length - 1].id + 1;
+			return (props.todos[props.todos.length - 1].id + 1) * Math.random();
 		}
 	};
 
@@ -44,7 +45,7 @@ const AddToDo = (props) => {
 	);
 };
 
-// CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS
+// STYLING
 const AddToDoStyled = styled.form`
 	display: flex;
 	justify-content: space-between;

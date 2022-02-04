@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import BoltIcon from '@mui/icons-material/Bolt';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -79,7 +78,7 @@ const TodoItem = (props) => {
 	);
 };
 
-// CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS // CSS
+// STYLING
 const TodoItemStyled = styled.div`
 	display: flex;
 	justify-content: space-between;

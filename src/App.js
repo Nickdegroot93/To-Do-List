@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Container from './UI/Container';
 import Title from './UI/Title';
@@ -9,23 +9,33 @@ import ThemeSwitch from './Components/ThemeSwitch';
 
 function App() {
 	// Todo data
-	const [todos, setTodos] = useState([
-		{
-			id: 1,
-			title: 'Learn React',
-			completed: false,
-		},
-		{
-			id: 2,
-			title: 'Tidy up the apartment',
-			completed: false,
-		},
-		{
-			id: 3,
-			title: 'Create a to-do app',
-			completed: true,
-		},
-	]);
+	const [todos, setTodos] = useState(() => {
+		const localSaved = JSON.parse(localStorage.getItem('todoList'));
+		return (
+			localSaved || [
+				{
+					id: 1,
+					title: 'Learn React',
+					completed: false,
+				},
+				{
+					id: 2,
+					title: 'Tidy up the apartment',
+					completed: false,
+				},
+				{
+					id: 3,
+					title: 'Create a to-do app',
+					completed: true,
+				},
+			]
+		);
+	});
+
+	useEffect(() => {
+		localStorage.setItem('todoList', JSON.stringify(todos));
+		console.log(todos);
+	}, [todos]);
 
 	const [notificationMessage, setNotificationMessage] = useState([]);
 
@@ -95,6 +105,7 @@ function App() {
 				notificationMessage.map((message) => (
 					<Notification message={message} />
 				))}
+			<p className="copyright">Created by Nick de Groot with React.js</p>
 		</AppStyled>
 	);
 }
@@ -108,6 +119,14 @@ const AppStyled = styled.div`
 
 	@media (max-width: 768px) {
 		margin-top: 1rem;
+	}
+
+	.copyright {
+		font-style: italic;
+		padding: 1rem;
+		font-size: 0.8rem;
+		color: var(--color-copyright);
+		opacity: 0.5;
 	}
 `;
 

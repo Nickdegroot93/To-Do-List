@@ -54,8 +54,8 @@ const MaterialUISwitch = styledMui(Switch)(({ theme }) => ({
 }));
 
 const ThemeSwitch = () => {
-	const [theme, setTheme] = useState('light-theme');
-	const [checked, setChecked] = useState(false);
+	const [theme, setTheme] = useState('dark-theme');
+	const [checked, setChecked] = useState(true);
 
 	useEffect(() => {
 		document.documentElement.className = theme;
@@ -81,6 +81,7 @@ const ThemeSwitch = () => {
 	);
 };
 
+// STYLING
 const ThemeSwitchStyled = styled.div`
 	display: flex;
 	align-items: center;
